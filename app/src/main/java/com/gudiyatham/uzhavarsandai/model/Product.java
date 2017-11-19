@@ -7,6 +7,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Product {
+
+    public Product(String name) {
+        this.name = name;
+    }
+
+    public Product(){
+
+    }
    private String name;
 
     public String getName() {
@@ -17,6 +25,15 @@ public class Product {
         this.name = name;
     }
 
+    @SerializedName("image")
+    @Expose
+
+    private String image;
+
+//        @SerializedName("price")
+//    @Expose
+//    private Integer price;
+//
     public String getImage() {
         return image;
     }
@@ -25,31 +42,26 @@ public class Product {
         this.image = image;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
+//    public Integer getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(Integer price) {
+//        this.price = price;
+//    }
+//
+//    public String getAvailability() {
+//        return availability;
+//    }
+//
+//    public void setAvailability(String availability) {
+//        this.availability = availability;
+//    }
 
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
 
-    public String getAvailability() {
-        return availability;
-    }
+//
 
-    public void setAvailability(String availability) {
-        this.availability = availability;
-    }
-
-    @SerializedName("image")
-    @Expose
-
-    private String image;
-
-    @SerializedName("price")
-    @Expose
-    private Integer price;
-    @SerializedName("availability")
-    @Expose
-    private String availability;
+//    @SerializedName("availability")
+//    @Expose
+//    private String availability;
 }

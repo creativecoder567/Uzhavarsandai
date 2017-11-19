@@ -43,12 +43,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         holder.textView.setText(categoryData.getName());
         Glide.with(ctx).load(mCategoryDatas.get(position).getImage()).into(holder.image);
 
-        if (categoryData.getAvailability().equals("1")) {
-            holder.availableTv.setText("buy now");
-        } else{
-            holder.availableTv.setTextColor(Color.RED);
-            holder.availableTv.setText("coming soon");
-        }
+//        if (categoryData.getAvailability().equals("1")) {
+//            holder.availableTv.setText("buy now");
+//        } else{
+//            holder.availableTv.setTextColor(Color.RED);
+//            holder.availableTv.setText("coming soon");
+//        }
     }
 
     @Override

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "71243545820-arld361dt3d4d6g9l10loviltbkruogo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gudiyatham.uzhavarsandai",
+            "certificate_hash": "7b9a49abb009fe935e924f9d774a1ce5c77c3c94"
+          }
+        },
+        {
           "client_id": "71243545820-8uq037vaiith3t227b65belf82kgkfck.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
