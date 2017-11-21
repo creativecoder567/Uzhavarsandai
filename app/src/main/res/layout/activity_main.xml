@@ -9,12 +9,14 @@
     tools:context="com.gudiyatham.uzhavarsandai.MainActivity">
 
 
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/recyclerview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</android.support.v7.widget.RecyclerView>
+    <FrameLayout
+        android:id="@+id/containerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolback"
+        android:orientation="vertical"></FrameLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
