@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -18,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.gudiyatham.uzhavarsandai.MainActivity;
 import com.gudiyatham.uzhavarsandai.R;
-import com.gudiyatham.uzhavarsandai.adapter.CategoryAdapter;
+import com.gudiyatham.uzhavarsandai.adapter.UpdateAdapter;
 import com.gudiyatham.uzhavarsandai.model.Product;
 
 import java.util.ArrayList;
@@ -30,9 +31,9 @@ public class AboutFragment extends Fragment {
 
 
     RecyclerView recyclerView;
-    private CategoryAdapter categoryAdapter;
+    private UpdateAdapter updateAdapter;
     ArrayList<Product> arrayList = new ArrayList<>();
-
+    Button btn_update;
     DatabaseReference databaseProducts;
 
     public AboutFragment() {
@@ -46,12 +47,23 @@ public class AboutFragment extends Fragment {
 
         databaseProducts = FirebaseDatabase.getInstance().getReference("products");
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.fragment_home, container, false);
+        View v= inflater.inflate(R.layout.fragment_about, container, false);
 
         recyclerView = v.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        categoryAdapter= new CategoryAdapter(arrayList,getContext());
-        recyclerView.setAdapter(categoryAdapter);
+        updateAdapter= new UpdateAdapter(arrayList,getContext());
+        recyclerView.setAdapter(updateAdapter);
+
+        btn_update=v.findViewById(R.id.btn_update);
+
+
+        btn_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             String id=databaseProducts.push().getKey();
+                Log.d("productid", "onClick: "+id.toString());
+            }
+        });
         return v;
     }
 
@@ -84,7 +96,7 @@ public class AboutFragment extends Fragment {
                 //attaching adapter to the listview
                 //  listViewArtists.setAdapter(artistAdapter);
 
-                categoryAdapter.notifyDataSetChanged();
+                updateAdapter.notifyDataSetChanged();
             }
 
 

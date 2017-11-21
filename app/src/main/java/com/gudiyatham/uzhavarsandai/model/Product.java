@@ -17,6 +17,15 @@ public class Product {
     }
    private String name;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
     public String getName() {
         return name;
     }
@@ -30,10 +39,10 @@ public class Product {
 
     private String image;
 
-//        @SerializedName("price")
-//    @Expose
-//    private Integer price;
-//
+        @SerializedName("price")
+    @Expose
+    private Integer price;
+
     public String getImage() {
         return image;
     }
@@ -42,13 +51,13 @@ public class Product {
         this.image = image;
     }
 
-//    public Integer getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(Integer price) {
-//        this.price = price;
-//    }
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
 //
 //    public String getAvailability() {
 //        return availability;

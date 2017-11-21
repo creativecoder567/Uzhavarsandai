@@ -19,7 +19,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="50dp"
-             />
+            />
 
         <TextView
             android:id="@+id/category_name"
@@ -28,12 +28,17 @@
             android:layout_marginLeft="20dp"
             android:text="Milk"
             android:textColor="#000" />
-        <TextView
-            android:id="@+id/tvPrice"
+        <!--<TextView-->
+            <!--android:id="@+id/tvPrice"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--tools:text="But Now" />-->
+        <EditText
+            android:id="@+id/etPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            tools:text="But Now" />
+            android:layout_marginLeft="20dp"/>
     </LinearLayout>
 
     <View
