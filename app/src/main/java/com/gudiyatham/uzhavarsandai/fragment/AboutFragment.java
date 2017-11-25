@@ -20,9 +20,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.gudiyatham.uzhavarsandai.MainActivity;
 import com.gudiyatham.uzhavarsandai.R;
 import com.gudiyatham.uzhavarsandai.adapter.UpdateAdapter;
+import com.gudiyatham.uzhavarsandai.model.Price;
 import com.gudiyatham.uzhavarsandai.model.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +39,7 @@ public class AboutFragment extends Fragment {
     ArrayList<Product> arrayList = new ArrayList<>();
     Button btn_update;
     DatabaseReference databaseProducts;
+    //HashMap<String, Integer> map = new HashMap<String,Integer>();
 
     public AboutFragment() {
         // Required empty public constructor
@@ -60,8 +65,18 @@ public class AboutFragment extends Fragment {
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             String id=databaseProducts.push().getKey();
-                Log.d("productid", "onClick: "+id.toString());
+             //String id=databaseProducts.push().getKey();
+              //  Log.d("productid", "onClick: "+id.toString());
+                //Set<Integer> hs = UpdateAdapter.price;
+              HashMap<String, Integer> map1 =updateAdapter.map;
+                for(Map.Entry<String,Integer> entry:map1.entrySet()){
+             String name=entry.getKey();
+             Integer p =entry.getValue();
+
+                    Toast.makeText(getContext(), ""+p+""+name, Toast.LENGTH_SHORT).show();
+                    Log.d("hash", "onClick: "+p+""+name);
+                }
+
             }
         });
         return v;
