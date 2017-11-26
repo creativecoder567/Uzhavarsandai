@@ -25,6 +25,12 @@ public class Product {
         this.price = price;
     }
 
+    public Product(String downloadUrl, String name, String s) {
+        this.name = name;
+        this.image = downloadUrl;
+        this.price = Integer.valueOf(s);
+    }
+
     public String getId() {
         return id;
     }

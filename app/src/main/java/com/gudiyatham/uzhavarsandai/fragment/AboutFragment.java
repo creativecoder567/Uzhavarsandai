@@ -1,9 +1,17 @@
 package com.gudiyatham.uzhavarsandai.fragment;
 
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.gudiyatham.uzhavarsandai.ProductAddActivity;
 import com.gudiyatham.uzhavarsandai.R;
 import com.gudiyatham.uzhavarsandai.adapter.UpdateAdapter;
 import com.gudiyatham.uzhavarsandai.model.Product;
@@ -43,6 +52,7 @@ public class AboutFragment extends Fragment {
     ArrayList<Product> arrayList = new ArrayList<>();
     Button btn_update;
     DatabaseReference databaseProducts;
+    FloatingActionButton fabAdd;
     //HashMap<String, Integer> productPriceMap = new HashMap<String,Integer>();
 
     public AboutFragment() {
@@ -64,8 +74,7 @@ public class AboutFragment extends Fragment {
         recyclerView.setAdapter(updateAdapter);
 
         btn_update = v.findViewById(R.id.btn_update);
-
-
+        fabAdd=v.findViewById(R.id.fabAdd);
         btn_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +99,8 @@ public class AboutFragment extends Fragment {
                 }}
         });
 
+
+
        /* for (int i = 0; i <20 ; i++) {
             Product  product=new Product("names "+i,"Urll",10+i);
             databaseProducts.push().setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -99,6 +110,12 @@ public class AboutFragment extends Fragment {
                 }
             });
         }*/
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              startActivity(new Intent(getContext(),ProductAddActivity.class));
+            }
+        });
 
         return v;
     }
