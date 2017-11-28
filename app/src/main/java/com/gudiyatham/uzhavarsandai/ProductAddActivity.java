@@ -62,7 +62,7 @@ public class ProductAddActivity extends AppCompatActivity {
             File file = new File(this.getCacheDir(), "cropped.jpg");
             Uri destination = Uri.fromFile(file);
             Uri source = data.getData();
-            Crop.of(source, destination).withAspect(2,1).start(this);
+            Crop.of(source, destination).withAspect(1,1).start(this);
         }
         if (requestCode == Crop.REQUEST_CROP) {
             handleCrop(resultCode,data);

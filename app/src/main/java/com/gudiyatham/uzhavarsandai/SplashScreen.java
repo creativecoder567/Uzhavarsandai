@@ -3,6 +3,7 @@ package com.gudiyatham.uzhavarsandai;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,11 @@ import android.util.Log;
 import android.view.View;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.JsonObject;
 import com.gudiyatham.uzhavarsandai.utils.NetWorkUtils;
 
@@ -53,46 +59,36 @@ public class SplashScreen extends AppCompatActivity {
             snackbar.show();
             return;
         }
-//        apiService.getAppStatus().enqueue(new Callback<JsonObject>() {
-//            @Override
-//            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-//                try {
-//                    if (response.isSuccessful()) {
-//                        JsonObject json = response.body();
-//                        String updateNotice = json.get("update_notice_text").getAsString();
-//                        int minVersion = json.get("min_version_code").getAsInt();
-//                        int currentVersion = json.get("current_version_code").getAsInt();
-//                        PackageInfo pInfo = SplashScreen.this.getPackageManager().getPackageInfo(getPackageName(), 0);
-//                        String version = pInfo.versionName;
-//                        int verCode = pInfo.versionCode;
-//                        checkAppVersion(verCode, minVersion, currentVersion, updateNotice);
-//
-//                    } else {
-//                        SPLASH_TIME_OUT = 300;
-//                        launchNextScreen();
-//                    }
-//
-//                } catch (Exception e) {
-//                    SPLASH_TIME_OUT = 3000;
-//                    launchNextScreen();
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<JsonObject> call, Throwable t) {
-//                SPLASH_TIME_OUT = 1000;
-//                launchNextScreen();
-//            }
-//        });
+        DatabaseReference databaseProducts = FirebaseDatabase.getInstance().getReference("app1-info");
 
-        if (getIntent().getExtras() != null) {
-            for (String key : getIntent().getExtras().keySet()) {
-                Object value = getIntent().getExtras().get(key);
-                Log.d(TAG, "MyFirebaseMsgService Key: " + key + " Value: " + value);
+        databaseProducts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                String updateNotice = dataSnapshot.child("update_notice_text").getValue(String.class);
+                int minVersion =(dataSnapshot.child("min_version_code").getValue(Integer.class));
+                int currentVersion = dataSnapshot.child("current_version_code").getValue(Integer.class);
+                PackageInfo pInfo = null;
+
+                    pInfo = SplashScreen.this.getPackageManager().getPackageInfo(getPackageName(), 0);
+
+                String version = pInfo.versionName;
+                int verCode = pInfo.versionCode;
+                checkAppVersion(verCode, minVersion, currentVersion, updateNotice);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                SPLASH_TIME_OUT = 1000;
+                launchNextScreen();
+
+            }
+        });
+
+
 
 
     }
@@ -199,7 +195,7 @@ public class SplashScreen extends AppCompatActivity {
                     .setMessage(updateNotice)
                     .setPositiveButton("Update", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                            final String appPackageName = getPackageName();
                             try {
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                             } catch (android.content.ActivityNotFoundException anfe) {

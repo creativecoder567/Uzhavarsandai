@@ -1,32 +1,36 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.gudiyatham.uzhavarsandai.fragment.AboutFragment">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_update" />
 
     <Button
-        android:layout_gravity="center_horizontal"
         android:id="@+id/btn_update"
-        android:text="update"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="update" />
 
- <android.support.design.widget.FloatingActionButton
-     app:srcCompat="@drawable/ic_add_circle_black_24dp"
-     android:id="@+id/fabAdd"
-     android:tint="#fff"
-     android:layout_margin="30dp"
-     android:layout_gravity="bottom|end"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content" />
-</android.support.design.widget.CoordinatorLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        android:tint="#fff"
+        app:srcCompat="@drawable/ic_add_circle_black_24dp" />
+</RelativeLayout>
+
+

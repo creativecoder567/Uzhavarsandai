@@ -44,7 +44,7 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AboutFragment extends Fragment {
+public class AboutFragment extends Fragment implements UpdateAdapter.CallBack {
 
 
     RecyclerView recyclerView;
@@ -70,7 +70,7 @@ public class AboutFragment extends Fragment {
 
         recyclerView = v.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        updateAdapter = new UpdateAdapter(arrayList, getContext());
+        updateAdapter = new UpdateAdapter(arrayList, getContext(),this);
         recyclerView.setAdapter(updateAdapter);
 
         btn_update = v.findViewById(R.id.btn_update);
@@ -155,6 +155,23 @@ public class AboutFragment extends Fragment {
             }
         });
 
+
+    }
+
+    @Override
+    public void delete(int pos) {
+       String id= arrayList.get(pos).getId();
+        databaseProducts.child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getContext(), "succ", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "faii", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }

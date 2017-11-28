@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     mFragmentTransaction = mFragmentManager.beginTransaction();
                     mainFragment.setArguments(bundle);
                     mFragmentTransaction.replace(R.id.containerView, mainFragment).commit();
-                   // mTextMessage.setText(R.string.title_home);
+                    // mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
                     AboutFragment about = new AboutFragment();
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
                     mFragmentTransaction = mFragmentManager.beginTransaction();
                     //mainFragment.setArguments(bundle);
                     mFragmentTransaction.replace(R.id.containerView, about).commit();
-                   // mTextMessage.setText(R.string.title_dashboard);
+                    // mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_notifications:
-                   // mTextMessage.setText(R.string.title_notifications);
+                    // mTextMessage.setText(R.string.title_notifications);
                     return true;
             }
             return false;
@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-
         mainFragment = new HomeFragment();
         Bundle bundle = new Bundle();
         mFragmentManager = getSupportFragmentManager();
@@ -92,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
 }
